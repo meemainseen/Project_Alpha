@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>meemainseen</title>
+  <link href='https://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'>
+</head>
+<body>
+  <style>
+    html {
+      box-sizing: border-box;
+      background: #ffc600;
+      font-family: 'helvetica neue';
+      font-size: 20px;
+      font-weight: 200;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    *, *:before, *:after {
+      box-sizing: inherit;
+    }
+
+    .panels {
+      min-height: 100vh;
+      overflow: hidden;
+      display: flex;
+    }
+
+    .panel {
+      background: #6B0F9C;
+      box-shadow: inset 0 0 0 5px rgba(255,255,255,0.1);
+      color: white;
+      text-align: center;
+      align-items: center;
+      /* Safari transitionend event.propertyName === flex */
+      /* Chrome + FF transitionend event.propertyName === flex-grow */
+      transition:
+        font-size 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
+        flex 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
+        background 0.2s;
+      font-size: 20px;
+      background-size: cover;
+      background-position: center;
+      flex: 1;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .panel1 { background-image:url(http://www.meemainseen.com/wp-content/uploads/2019/04/razkmak.jpg); }
+    .panel2 { background-image:url(http://www.meemainseen.com/wp-content/uploads/2019/02/summit_minar.jpg); }
+    .panel3 { background-image:url(http://www.meemainseen.com/wp-content/uploads/2019/01/tomb_profile.jpg); }
+    .panel4 { background-image:url(http://www.meemainseen.com/wp-content/uploads/2018/09/Otterville_featured.jpg); }
+    .panel5 { background-image:url(http://www.meemainseen.com/wp-content/uploads/2018/02/Chantry_Island_1_mini.jpg); }
+
+    /* Flex Children */
+    .panel > * {
+      margin: 0;
+      width: 100%;
+      transition: transform 0.5s;
+      flex: 1 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .panel > *:first-child {transform: translateY(500%);}
+    .panel.open-active > *:first-child {transform: translateY(0);}
+    .panel > *:nth-child(3) {transform: translateY(-500%);}
+    .panel.open-active > *:nth-child(3) {transform: translateY(0);}
+    .panel > *:last-child {transform: translateY(100%);}
+    .panel.open-active > *:last-child {transform: translateY(0);}
+
+
+    .panel p {
+      text-transform: uppercase;
+      font-family: 'Amatic SC', cursive;
+      text-shadow: 0 0 4px rgba(0, 0, 0, 0.72), 0 0 14px rgba(0, 0, 0, 0.45);
+      font-size: 2em;
+    }
+
+    .panel p:nth-child(2) {
+      font-size: 4em;
+    }
+
+    .panel.open {
+      font-size: 40px;
+      flex : 5;
+    }
+    .button {
+         background-color: black;
+         opacity: 0.7;
+         border: none;
+         color: white;
+         padding: 20px 34px;
+         text-align: center;
+         text-decoration: none;
+         display: flex;
+         flex: 1;
+         font-family: 'Amatic SC', cursive;
+         font-size: 40px;
+         cursor: pointer;
+         }
+
+  </style>
+
+
+  <div class="panels">
+    <div class="panel panel1">
+      <p>Life</p>
+      <p>in</p>
+      <p>Khaki</p>
+      <a href="https://www.meemainseen.com/category/army" class="button">Click Me!</a>
+    </div>
+    <div class="panel panel2">
+      <p>Colors</p>
+      <p>of</p>
+      <p>Lahore</p>
+      <a href="https://www.meemainseen.com/category/lahore" class="button">Click Me!</a>
+    </div>
+    <div class="panel panel3">
+      <p>Explore</p>
+      <p>West</p>
+      <p>Punjab</p>
+      <a href="https://www.meemainseen.com/category/punjab/" class="button">Click Me!</a>
+    </div>
+    <div class="panel panel4">
+      <p>Romance</p>
+      <p>of</p>
+      <p>Railway</p>
+      <a href="https://www.meemainseen.com/category/railway" class="button">Click Me!</a>
+    </div>
+    <div class="panel panel5">
+      <p>Tales</p>
+      <p>from</p>
+      <p>Ontario</p>
+      <a href="https://www.meemainseen.com/category/ontario" class="button">Click Me!</a>
+    </div>
+  </div>
+
+  <script>
+    const panels = document.querySelectorAll('.panel');
+
+    function toggleOpen() {
+      this.classList.toggle('open');
+    }
+
+    function toggleActive(e) {
+      console.log(e.propertyName);
+      if(e.propertyName.includes('flex')) {
+        this.classList.toggle('open-active');
+      }
+    }
+
+    panels.forEach(panel => panel.addEventListener('click', toggleOpen));
+    panels.forEach(panel => panel.addEventListener('transitionend', toggleActive));
+
+  </script>
+
+
+
+</body>
+</html>
