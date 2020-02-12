@@ -72,9 +72,10 @@
     .panel.open-active > *:first-child {transform: translateY(0);}
     .panel > *:nth-child(3) {transform: translateY(-500%);}
     .panel.open-active > *:nth-child(3) {transform: translateY(0);}
-    .panel > *:last-child {transform: translateY(100%);}
-    .panel.open-active > *:last-child {transform: translateY(0);}
-
+    .panel > .button {opacity:0;}
+    .panel.open-active > .button {opacity:0.5;
+                                  transition: opacity 1s;
+    }
 
     .panel p {
       text-transform: uppercase;
